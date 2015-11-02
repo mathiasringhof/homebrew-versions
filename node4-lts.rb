@@ -1,10 +1,9 @@
-class Node4 < Formula
+class Node4-lts < Formula
   desc "JavaScript runtime built on Chrome's V8 engine"
   homepage "https://nodejs.org/"
   url "https://nodejs.org/dist/v4.2.1/node-v4.2.1.tar.gz"
   sha256 "8861b9f4c3b4db380fcda19a710c0430c3d62d03ee176c64db63eef95a672663"
   head "https://github.com/nodejs/node.git"
-  conflicts_with "node", :because => "Differing versions of the same formula"
 
   option "with-debug", "Build with debugger hooks"
   option "without-npm", "npm will not be installed"
@@ -14,6 +13,8 @@ class Node4 < Formula
   depends_on :python => :build if MacOS.version <= :snow_leopard
   depends_on "pkg-config" => :build
   depends_on "openssl" => :optional
+
+  conflicts_with "node", :because => "Differing versions of the same formula"
 
   fails_with :llvm do
     build 2326
@@ -114,12 +115,10 @@ class Node4 < Formula
     path = testpath/"test.js"
     path.write "console.log('hello');"
 
-    output = `#{bin}/node #{path}`.strip
+    output = shell_output("#{bin}/node #{path}").strip
     assert_equal "hello", output
-    assert_equal 0, $?.exitstatus
-    output = `#{bin}/node -e "console.log(new Date('2015-09-15').toLocaleDateString('en'))"`.strip
-    assert_match %r{^9/1[45]/2015$}, output # depends on system timezone
-    assert_equal 0, $?.exitstatus
+    output = shell_output("#{bin}/node -e 'console.log(new Intl.NumberFormat().format(1234.56))'").strip
+    assert_equal "1,234.56", output
 
     if build.with? "npm"
       # make sure npm can find node
