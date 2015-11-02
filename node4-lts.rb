@@ -1,4 +1,4 @@
-class Node4LTS < Formula
+class Node4Lts < Formula
   desc "JavaScript runtime built on Chrome's V8 engine"
   homepage "https://nodejs.org/"
   url "https://nodejs.org/dist/v4.2.1/node-v4.2.1.tar.gz"
