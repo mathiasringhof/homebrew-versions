@@ -1,8 +1,8 @@
 class Node4Lts < Formula
   desc "JavaScript runtime built on Chrome's V8 engine"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v4.2.1/node-v4.2.1.tar.gz"
-  sha256 "8861b9f4c3b4db380fcda19a710c0430c3d62d03ee176c64db63eef95a672663"
+  url "https://nodejs.org/dist/v4.2.2/node-v4.2.2.tar.gz"
+  sha256 "00e709353435b436b5bbf5e62272ebb15fe801065422c4c2afe2b93456210cb1"
   head "https://github.com/nodejs/node.git"
 
   option "with-debug", "Build with debugger hooks"
